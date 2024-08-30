@@ -1,17 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import StartGame from './components/StartGame';
+import ScoreCard from './components/ScoreCard';
 import HangmanGame from './components/HangmanGame';
+import StartPage from './components/StartPage';
 
-const App = () => {
+function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<StartGame />} />
-        <Route path="/hangman" element={<HangmanGame />} />
+        <Route path="/" element={<StartPage />} />
+        <Route path="/game" element={<HangmanGame />} />
+        <Route path="/score" element={<ScoreCard />} />
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;

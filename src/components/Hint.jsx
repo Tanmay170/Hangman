@@ -1,8 +1,11 @@
-// src/components/Hint.js
 import React from 'react';
 
 const Hint = ({ hint }) => {
-  return <p className="mt-4 text-xl italic text-gray-400">Hint: {hint}</p>;
+  return (
+    <div className="mt-4 mb-6 text-lg font-light text-gray-300">
+      {hint}
+    </div>
+  );
 };
 
 export default Hint;

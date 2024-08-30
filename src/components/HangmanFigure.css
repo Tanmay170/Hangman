@@ -1,59 +1,59 @@
-/* src/components/HangmanFigure.css */
-.left-arm, .right-arm {
-    height: 20px;
-  }
-  
-  .left-leg, .right-leg {
-    width: 20px;
-    height: 60px;
-  }
-  
-  .left-arm {
-    transform: rotate(-45deg);
-    transform-origin: top right;
-  }
-  
-  .right-arm {
-    transform: rotate(45deg);
-    transform-origin: top left;
-  }
-  
-  /* Style for the overall figure to be aligned correctly */
-  .hangman-figure {
-    position: relative;
-  }
-  
-  .head {
-    position: absolute;
-    top: 0;
-  }
-  
-  .body {
-    position: absolute;
-    top: 40px;
-  }
-  
-  .left-arm {
-    position: absolute;
-    top: 40px;
-    left: -30px;
-  }
-  
-  .right-arm {
-    position: absolute;
-    top: 40px;
-    right: -30px;
-  }
-  
-  .left-leg {
-    position: absolute;
-    top: 120px;
-    left: -10px;
-  }
-  
-  .right-leg {
-    position: absolute;
-    top: 120px;
-    right: -10px;
-  }
-  
+.hangman-figure {
+  width: 100px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto 20px;
+}
+
+.head {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 15px);
+}
+
+.body {
+  width: 8px;
+  height: 60px;
+  position: absolute;
+  top: 40px;
+  left: calc(50% - 4px);
+}
+
+.left-arm {
+  width: 8px;
+  height: 40px;
+  position: absolute;
+  top: 40px;
+  left: calc(50% - 35px);
+  transform: rotate(-45deg);
+}
+
+.right-arm {
+  width: 8px;
+  height: 40px;
+  position: absolute;
+  top: 40px;
+  right: calc(50% - 35px);
+  transform: rotate(45deg);
+}
+
+.left-leg {
+  width: 8px;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 15px);
+  transform: rotate(-25deg);
+}
+
+.right-leg {
+  width: 8px;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  right: calc(50% - 15px);
+  transform: rotate(25deg);
+}

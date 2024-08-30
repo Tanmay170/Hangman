@@ -1,17 +1,23 @@
-// src/components/ScoreCard.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ScoreCard = ({ score }) => {
+  const navigate = useNavigate();
+
+  const handleRestart = () => {
+    navigate('/start');
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white">
-      <div className="p-8 bg-gray-700 rounded-lg shadow-lg text-center">
-        <h2 className="text-3xl font-bold">Game Over</h2>
-        <p className="text-xl mt-4">Your Score: {score}</p>
+      <div className="text-center">
+        <h1 className="text-3xl font-bold">Game Over</h1>
+        <p className="mt-4 text-2xl">Your Score: {score}</p>
         <button
-          onClick={() => window.location.reload()}
-          className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleRestart}
+          className="mt-8 px-6 py-3 bg-green-600 text-white font-bold rounded hover:bg-green-700"
         >
-          Play Again
+          Start a New Game
         </button>
       </div>
     </div>
