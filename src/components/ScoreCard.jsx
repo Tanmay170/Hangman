@@ -5,12 +5,12 @@ const ScoreCard = ({ score }) => {
   const navigate = useNavigate();
 
   const handleRestart = () => {
-    navigate('/start');
+    navigate('/');
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white">
-      <div className="text-center">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white p-4">
+      <div className="text-center bg-gray-700 p-6 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-3xl font-bold">Game Over</h1>
         <p className="mt-4 text-2xl">Your Score: {score}</p>
         <button
