@@ -22,7 +22,7 @@ const words = [
   { word: 'Horcrux', hint: 'A dark object containing a fragment of a wizard\'s soul for immortality.' },
   { word: 'Deathly Hallows', hint: 'Three powerful magical objects that together make the possessor the Master of Death.' },
   { word: 'Elder Wand', hint: 'The most powerful wand ever made, one of the Deathly Hallows.' },
-  { word: 'Marauder\'s Map', hint: 'A magical map showing every person\'s location within Hogwarts.' },
+  { word: 'Marauders Map', hint: 'A magical map showing every person\'s location within Hogwarts.' },
   { word: 'Voldemort', hint: 'The dark wizard who seeks to conquer the wizarding world and eradicate Muggles.' },
   { word: 'Slytherin', hint: 'One of the four Hogwarts houses, known for ambition, cunning, and resourcefulness.' },
   { word: 'Ravenclaw', hint: 'One of the four Hogwarts houses, valued for intelligence, wisdom, and creativity.' },

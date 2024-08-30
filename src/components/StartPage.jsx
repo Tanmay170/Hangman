@@ -10,7 +10,7 @@ const StartPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white">
-      <h1 className="text-4xl font-bold">Harry Potter Hangman Game</h1>
+      <h1 className="text-4xl m-2 font-bold">Hangman Game</h1>
       <button
         onClick={startGame}
         className="mt-8 px-6 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-700"
