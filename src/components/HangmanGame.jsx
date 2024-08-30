@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import WordDisplay from './WordDisplay';
 import Hint from './Hint';
 import ScoreCard from './ScoreCard';
@@ -48,8 +48,6 @@ const HangmanGame = () => {
   const [totalTries, setTotalTries] = useState(6);
   const [gameCompleted, setGameCompleted] = useState(false);
 
-  const inputRef = useRef(null);
-
   const currentWord = selectedWords[currentWordIndex];
   const hangmanStep = 6 - totalTries;
 
@@ -57,17 +55,15 @@ const HangmanGame = () => {
     const handleKeyPress = (event) => {
       const letter = event.key.toUpperCase();
       if (letter.match(/^[A-Z]$/) && !guessedLetters.includes(letter) && totalTries > 0 && !gameCompleted) {
-        setGuessedLetters([...guessedLetters, letter]);
+        setGuessedLetters(prevLetters => [...prevLetters, letter]);
 
         if (!currentWord.word.toUpperCase().includes(letter)) {
-          setTotalTries(totalTries - 1);
+          setTotalTries(prevTries => prevTries - 1);
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
-
-    inputRef.current.focus();
 
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
@@ -78,17 +74,14 @@ const HangmanGame = () => {
     const allLettersGuessed = currentWord.word.toUpperCase().split('').every(letter => guessedLetters.includes(letter.toUpperCase()) || letter === ' ');
 
     if (allLettersGuessed && !gameCompleted) {
-      // Increment the score only once
       setScore(prevScore => prevScore + 1);
 
       if (currentWordIndex < selectedWords.length - 1) {
-        // Move to the next word after a short delay
         setTimeout(() => {
-          setCurrentWordIndex(currentWordIndex + 1);
+          setCurrentWordIndex(prevIndex => prevIndex + 1);
           setGuessedLetters([]);
         }, 1000);
       } else {
-        // No more words left, end the game
         setTimeout(() => {
           setGameCompleted(true);
         }, 1000);
@@ -98,7 +91,6 @@ const HangmanGame = () => {
 
   useEffect(() => {
     if (totalTries <= 0) {
-      // Game over, no more tries left
       setGameCompleted(true);
     }
   }, [totalTries]);
@@ -108,19 +100,12 @@ const HangmanGame = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white">
-      <input
-        ref={inputRef}
-        type="text"
-        className="absolute opacity-0"
-        autoComplete="off"
-      />
-
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white p-4">
       <div className="mb-4 text-lg text-center">
         <p className="text-xl font-bold">Score: {score}</p>
         <p className="text-xl font-bold">Remaining Tries: {totalTries}</p>
       </div>
-      <div className="p-6 bg-gray-700 rounded-lg shadow-lg text-center">
+      <div className="p-4 bg-gray-700 rounded-lg shadow-lg text-center w-full max-w-md">
         <HangmanFigure step={hangmanStep} />
         <Hint hint={currentWord.hint} />
         <WordDisplay word={currentWord.word} guessedLetters={guessedLetters} />
