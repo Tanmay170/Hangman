@@ -10,7 +10,7 @@ const words = [
   { word: 'Golden Snitch', hint: 'A small, winged ball in Quidditch that ends the game when caught.' },
   { word: 'Galleon', hint: 'The main currency in the wizarding world, made of gold.' },
   { word: 'Mirror of Erised', hint: 'A mirror that shows the deepest desires of the viewer\'s heart.' },
-  { word: 'Philosopher\'s Stone', hint: 'A legendary stone that grants immortality and turns any metal into gold.' },
+  { word: 'Philosophers Stone', hint: 'A legendary stone that grants immortality and turns any metal into gold.' },
   { word: 'Invisibility Cloak', hint: 'A cloak that renders the wearer completely invisible.' },
   { word: 'Chamber of Secrets', hint: 'A hidden chamber within Hogwarts housing a deadly monster.' },
   { word: 'Quidditch', hint: 'A popular magical sport played on broomsticks.' },
