@@ -52,25 +52,6 @@ const HangmanGame = () => {
   const hangmanStep = 6 - totalTries;
 
   useEffect(() => {
-    const handleKeyPress = (event) => {
-      const letter = event.key.toUpperCase();
-      if (letter.match(/^[A-Z]$/) && !guessedLetters.includes(letter) && totalTries > 0 && !gameCompleted) {
-        setGuessedLetters(prevLetters => [...prevLetters, letter]);
-
-        if (!currentWord.word.toUpperCase().includes(letter)) {
-          setTotalTries(prevTries => prevTries - 1);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [guessedLetters, totalTries, currentWord, gameCompleted]);
-
-  useEffect(() => {
     const allLettersGuessed = currentWord.word.toUpperCase().split('').every(letter => guessedLetters.includes(letter.toUpperCase()) || letter === ' ');
 
     if (allLettersGuessed && !gameCompleted) {
@@ -94,6 +75,26 @@ const HangmanGame = () => {
       setGameCompleted(true);
     }
   }, [totalTries]);
+
+  const handleKeyPress = (event) => {
+    const guess = event.key.toUpperCase();
+
+    if (/[A-Z]/.test(guess) && !guessedLetters.includes(guess) && totalTries > 0 && !gameCompleted) {
+      setGuessedLetters(prevLetters => [...prevLetters, guess]);
+
+      if (!currentWord.word.toUpperCase().includes(guess)) {
+        setTotalTries(prevTries => prevTries - 1);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyPress);
+    };
+  }, [guessedLetters, totalTries, gameCompleted]);
 
   if (gameCompleted) {
     return <ScoreCard score={score} />;
