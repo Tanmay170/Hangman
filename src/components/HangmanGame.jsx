@@ -44,6 +44,7 @@ const HangmanGame = () => {
   const [selectedWords, setSelectedWords] = useState(getRandomWords());
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [guessedLetters, setGuessedLetters] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState('');
   const [score, setScore] = useState(0);
   const [totalTries, setTotalTries] = useState(6);
   const [gameCompleted, setGameCompleted] = useState(false);
@@ -76,25 +77,17 @@ const HangmanGame = () => {
     }
   }, [totalTries]);
 
-  const handleKeyPress = (event) => {
-    const guess = event.key.toUpperCase();
-
-    if (/[A-Z]/.test(guess) && !guessedLetters.includes(guess) && totalTries > 0 && !gameCompleted) {
+  const handleInputChange = (event) => {
+    const guess = event.target.value.toUpperCase();
+    if (guess && !guessedLetters.includes(guess) && totalTries > 0 && !gameCompleted) {
       setGuessedLetters(prevLetters => [...prevLetters, guess]);
 
       if (!currentWord.word.toUpperCase().includes(guess)) {
         setTotalTries(prevTries => prevTries - 1);
       }
     }
+    setCurrentGuess(''); // Reset the input field after processing the guess
   };
-
-  useEffect(() => {
-    window.addEventListener('keypress', handleKeyPress);
-
-    return () => {
-      window.removeEventListener('keypress', handleKeyPress);
-    };
-  }, [guessedLetters, totalTries, gameCompleted]);
 
   if (gameCompleted) {
     return <ScoreCard score={score} />;
@@ -110,6 +103,14 @@ const HangmanGame = () => {
         <HangmanFigure step={hangmanStep} />
         <Hint hint={currentWord.hint} />
         <WordDisplay word={currentWord.word} guessedLetters={guessedLetters} />
+        <input
+          type="text"
+          value={currentGuess}
+          onChange={handleInputChange}
+          maxLength="1"
+          className="mt-4 p-2 rounded bg-gray-600 text-white text-center w-12"
+          autoFocus
+        />
       </div>
     </div>
   );
